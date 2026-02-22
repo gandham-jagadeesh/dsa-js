@@ -1,10 +1,8 @@
-//BruteForce
-
 class Solution {
     search(txt, pat) {
-        let subarrk = this.nlensub(txt,pat.length);
-        let perms = this.perm(pat);
-        for(let perm  of perms ){
+        let subarrk = this.nlensub(txt,pat.length); // o(n) 
+        let perms = this.perm(pat); // o( n * n! ) -> 120 * 5 -> 600
+        for(let perm  of perms ){ // o(n ^ 2 ) -> 10^2 -> 100
            if(subarrk.includes(perm)){
                return true;
            }
@@ -51,8 +49,12 @@ Rules:
 BruteForce:
     - compare  all permutations of pat with  pat length subarrays of txt 
     - find perm() -> get all perms
-*/
-
+    - too slow
+    - tc: o(n * n!)
+    
+Advance Approach:
+    - sliding Window:
+        
 /*
     - abc
     a - abc,acb 
