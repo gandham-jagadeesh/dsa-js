@@ -36,7 +36,35 @@ class Solution {
         return res;
     }
 }
-``
+
+class Solution {
+    search(txt, pat) {
+        let chars = new Array(26).fill(0);
+        let k = pat.length;
+        for(let i = 0 ; i < k ; i++ ){
+            chars[txt.charCodeAt(i) - "a".charCodeAt(0)]  += 1;
+            chars[pat.charCodeAt(i) - "a".charCodeAt(0)] -=1;
+        }
+
+        for(let j = k ; j < txt.length ; j++ ){
+            let isvalid = true;
+            for(let i = 0 ; i < 26; i++){
+                if(chars[i] !=  0){
+                    isvalid = false;
+                    break;
+                }
+            }
+            if(isvalid){
+                return true; 
+            }
+            chars[txt.charCodeAt(j) - "a".charCodeAt(0)]+=1;
+            chars[txt.charCodeAt( j - k  ) - "a".charCodeAt(0)]-=1;
+
+        }
+        return false;
+    }
+
+}
 /*
 
 
@@ -51,10 +79,11 @@ BruteForce:
     - find perm() -> get all perms
     - too slow
     - tc: o(n * n!)
-    
+BruteForce:
+    - use charArray and generate all subarrays and cancel with the pat
 Advance Approach:
     - sliding Window:
-        
+    - approach: use char array
 /*
     - abc
     a - abc,acb 
